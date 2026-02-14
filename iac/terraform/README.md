@@ -2,7 +2,7 @@
 
 This folder will be built in small steps for a scalable AWS web app.
 
-## Step 1 (current)
+## Step 1
 - Bootstrap Terraform project structure
 - Configure AWS provider and Terraform version
 - Define base variables (`project_name`, `environment`, `aws_region`)
@@ -21,13 +21,18 @@ This folder will be built in small steps for a scalable AWS web app.
   - ALB -> app instances (80)
   - App instances -> DB (5432)
 
-## Step 4 (current)
+## Step 4
 - Add Application Load Balancer in public subnets
 - Add target group for app instances
 - Add HTTP listener forwarding to target group
 - Expose ALB DNS output
 
+## Step 5 (current)
+- Add launch template using latest Amazon Linux 2023 AMI from SSM
+- Add EC2 IAM role and instance profile for Systems Manager access
+- Add Auto Scaling Group in private app subnets and attach to ALB target group
+- Add target-tracking scaling policy (CPU-based)
+
 ## Next Steps
-1. Add launch template + ASG
-2. Add RDS Multi-AZ
-3. Add CloudWatch alarms + SNS alerts
+1. Add RDS Multi-AZ
+2. Add CloudWatch alarms + SNS alerts

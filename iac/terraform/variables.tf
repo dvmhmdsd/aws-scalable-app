@@ -39,3 +39,27 @@ variable "private_db_subnet_cidrs" {
   type        = list(string)
   default     = ["10.0.20.0/24", "10.0.21.0/24"]
 }
+
+variable "instance_type" {
+  description = "EC2 instance type for app instances."
+  type        = string
+  default     = "t3.micro"
+}
+
+variable "asg_desired_capacity" {
+  description = "Desired number of app instances in ASG."
+  type        = number
+  default     = 2
+}
+
+variable "asg_min_size" {
+  description = "Minimum number of app instances in ASG."
+  type        = number
+  default     = 2
+}
+
+variable "asg_max_size" {
+  description = "Maximum number of app instances in ASG."
+  type        = number
+  default     = 4
+}
