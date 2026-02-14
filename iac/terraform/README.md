@@ -33,10 +33,16 @@ This folder will be built in small steps for a scalable AWS web app.
 - Add Auto Scaling Group in private app subnets and attach to ALB target group
 - Add target-tracking scaling policy (CPU-based)
 
-## Step 6 (current)
+## Step 6
 - Add DB subnet group in private DB subnets
 - Add Amazon RDS instance with Multi-AZ support
 - Attach DB security group and expose DB endpoint output
 
+## Step 7 (current)
+- Add SNS topic for operational alerts
+- Add optional email subscription (`count` is used to create it only when `alert_email` is set)
+- Add CloudWatch alarms for ASG CPU, ALB 5XX, and RDS CPU
+- Wire alarm actions to SNS
+
 ## Next Steps
-1. Add CloudWatch alarms + SNS alerts
+1. Run `terraform init`, `terraform validate`, and `terraform plan`

@@ -117,3 +117,9 @@ variable "db_multi_az" {
   type        = bool
   default     = true
 }
+
+variable "alert_email" {
+  description = "Email address for alarm notifications. Leave empty to skip subscription."
+  type        = string
+  default     = ""
+}

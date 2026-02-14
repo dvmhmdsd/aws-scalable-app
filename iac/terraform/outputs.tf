@@ -12,3 +12,8 @@ output "db_endpoint" {
   description = "RDS endpoint address."
   value       = aws_db_instance.main.address
 }
+
+output "alerts_topic_arn" {
+  description = "SNS topic ARN used by CloudWatch alarms."
+  value       = aws_sns_topic.alerts.arn
+}
