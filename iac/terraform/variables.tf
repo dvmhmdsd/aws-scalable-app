@@ -63,3 +63,57 @@ variable "asg_max_size" {
   type        = number
   default     = 4
 }
+
+variable "db_engine" {
+  description = "Database engine."
+  type        = string
+  default     = "postgres"
+}
+
+variable "db_engine_version" {
+  description = "Database engine version."
+  type        = string
+  default     = "16.4"
+}
+
+variable "db_instance_class" {
+  description = "RDS instance class."
+  type        = string
+  default     = "db.t3.micro"
+}
+
+variable "db_allocated_storage" {
+  description = "Storage size (GiB) for RDS."
+  type        = number
+  default     = 20
+}
+
+variable "db_name" {
+  description = "Initial database name."
+  type        = string
+  default     = "appdb"
+}
+
+variable "db_username" {
+  description = "Master username for RDS."
+  type        = string
+  default     = "appadmin"
+}
+
+variable "db_password" {
+  description = "Master password for RDS."
+  type        = string
+  sensitive   = true
+}
+
+variable "db_port" {
+  description = "Database port."
+  type        = number
+  default     = 5432
+}
+
+variable "db_multi_az" {
+  description = "Enable Multi-AZ deployment for RDS."
+  type        = bool
+  default     = true
+}

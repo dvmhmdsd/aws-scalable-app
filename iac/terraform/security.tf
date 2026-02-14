@@ -54,9 +54,9 @@ resource "aws_security_group" "db" {
   vpc_id      = aws_vpc.main.id
 
   ingress {
-    description     = "PostgreSQL from app"
-    from_port       = 5432
-    to_port         = 5432
+    description     = "Database port from app"
+    from_port       = var.db_port
+    to_port         = var.db_port
     protocol        = "tcp"
     security_groups = [aws_security_group.app.id]
   }
@@ -72,4 +72,3 @@ resource "aws_security_group" "db" {
     Name = "${var.project_name}-${var.environment}-db-sg"
   })
 }
-

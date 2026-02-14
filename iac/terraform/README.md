@@ -27,12 +27,16 @@ This folder will be built in small steps for a scalable AWS web app.
 - Add HTTP listener forwarding to target group
 - Expose ALB DNS output
 
-## Step 5 (current)
+## Step 5
 - Add launch template using latest Amazon Linux 2023 AMI from SSM
 - Add EC2 IAM role and instance profile for Systems Manager access
 - Add Auto Scaling Group in private app subnets and attach to ALB target group
 - Add target-tracking scaling policy (CPU-based)
 
+## Step 6 (current)
+- Add DB subnet group in private DB subnets
+- Add Amazon RDS instance with Multi-AZ support
+- Attach DB security group and expose DB endpoint output
+
 ## Next Steps
-1. Add RDS Multi-AZ
-2. Add CloudWatch alarms + SNS alerts
+1. Add CloudWatch alarms + SNS alerts
