@@ -1,9 +1,10 @@
 resource "aws_lb" "app" {
-  name               = "${var.project_name}-${var.environment}-alb"
-  internal           = false
-  load_balancer_type = "application"
-  security_groups    = [aws_security_group.alb.id]
-  subnets            = aws_subnet.public[*].id
+  name                       = "${var.project_name}-${var.environment}-alb"
+  internal                   = false
+  load_balancer_type         = "application"
+  security_groups            = [aws_security_group.alb.id]
+  subnets                    = aws_subnet.public[*].id
+  enable_cross_zone_load_balancing = true
 
   tags = merge(local.common_tags, {
     Name = "${var.project_name}-${var.environment}-alb"
@@ -11,11 +12,12 @@ resource "aws_lb" "app" {
 }
 
 resource "aws_lb_target_group" "app" {
-  name        = "${var.project_name}-${var.environment}-tg"
-  port        = 80
-  protocol    = "HTTP"
-  target_type = "instance"
-  vpc_id      = aws_vpc.main.id
+  name                 = "${var.project_name}-${var.environment}-tg"
+  port                 = 80
+  protocol             = "HTTP"
+  target_type          = "instance"
+  vpc_id               = aws_vpc.main.id
+  deregistration_delay = 30
 
   health_check {
     path                = "/"

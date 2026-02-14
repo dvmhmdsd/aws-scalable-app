@@ -13,6 +13,7 @@ resource "aws_db_instance" "main" {
   engine_version             = var.db_engine_version
   instance_class             = var.db_instance_class
   allocated_storage          = var.db_allocated_storage
+  storage_encrypted          = true
   db_name                    = var.db_name
   username                   = var.db_username
   password                   = var.db_password
@@ -21,7 +22,7 @@ resource "aws_db_instance" "main" {
   vpc_security_group_ids     = [aws_security_group.db.id]
   publicly_accessible        = false
   multi_az                   = var.db_multi_az
-  backup_retention_period    = 7
+  backup_retention_period    = var.db_backup_retention_period
   skip_final_snapshot        = true
   deletion_protection        = false
   auto_minor_version_upgrade = true

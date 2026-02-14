@@ -52,6 +52,10 @@ resource "aws_launch_template" "app" {
   tags = merge(local.common_tags, {
     Name = "${var.project_name}-${var.environment}-lt"
   })
+
+  lifecycle {
+    create_before_destroy = true
+  }
 }
 
 resource "aws_autoscaling_group" "app" {
@@ -61,6 +65,7 @@ resource "aws_autoscaling_group" "app" {
   desired_capacity          = var.asg_desired_capacity
   health_check_type         = "ELB"
   health_check_grace_period = 180
+  wait_for_capacity_timeout = "10m"
   vpc_zone_identifier       = aws_subnet.private_app[*].id
   target_group_arns         = [aws_lb_target_group.app.arn]
 
