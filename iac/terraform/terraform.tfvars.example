@@ -1,0 +1,4 @@
+project_name = "scalable-web-app"
+environment  = "dev"
+aws_region   = "us-east-1"
+
