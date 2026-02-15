@@ -191,3 +191,13 @@ variable "certificate_arn" {
   default     = ""
 }
 
+variable "db_read_replica_count" {
+  description = "Number of read replicas for RDS (0-5)."
+  type        = number
+  default     = 0
+
+  validation {
+    condition     = var.db_replica_count >= 0 && var.db_replica_count <= 5
+    error_message = "DB replica count must be between 0 and 5."
+  }
+}

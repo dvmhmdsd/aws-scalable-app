@@ -32,3 +32,13 @@ resource "aws_db_instance" "main" {
   })
 }
 
+resource "aws_db_instance" "read_replica" {
+  count = var.db_read_replica_count
+
+  identifier                 = "${var.project_name}-${var.environment}-db-replica-${count.index + 1}"
+  replicate_source_db        = aws_db_instance.main.id
+
+  tags = merge(local.common_tags, {
+    Name = "${var.project_name}-${var.environment}-db-replica-${count.index + 1}"
+  })
+}

@@ -9,11 +9,16 @@ output "asg_name" {
 }
 
 output "db_endpoint" {
-  description = "RDS endpoint address."
-  value       = aws_db_instance.main.address
+  description = "RDS endpoint."
+  value       = aws_db_instance.main.endpoint
 }
 
 output "alerts_topic_arn" {
   description = "SNS topic ARN used by CloudWatch alarms."
   value       = aws_sns_topic.alerts.arn
+}
+
+output "rds_read_replica_endpoints" {
+  description = "List of RDS read replica endpoints."
+  value       = aws_db_instance.read_replica[*].endpoint
 }
