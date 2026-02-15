@@ -5,6 +5,11 @@ resource "aws_lb" "app" {
   security_groups            = [aws_security_group.alb.id]
   subnets                    = aws_subnet.public[*].id
   enable_cross_zone_load_balancing = true
+  access_logs {
+    bucket  = aws_s3_bucket.app.bucket
+    prefix  = "alb-logs"
+    enabled = true
+  }
 
   tags = merge(local.common_tags, {
     Name = "${var.project_name}-${var.environment}-alb"
