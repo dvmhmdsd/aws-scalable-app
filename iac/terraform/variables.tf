@@ -184,3 +184,10 @@ variable "alert_email" {
   type        = string
   default     = ""
 }
+
+variable "certificate_arn" {
+  description = "ARN of ACM certificate for HTTPS. Leave empty to use HTTP."
+  type        = string
+  default     = ""
+}
+
